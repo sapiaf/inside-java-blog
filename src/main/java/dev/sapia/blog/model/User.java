@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Table(name = "users")
@@ -32,4 +33,7 @@ public class User {
     @NotNull
     @NotBlank
     private String password;
+
+    @OneToMany(mappedBy = "author")
+    private List<Post> posts;
 }

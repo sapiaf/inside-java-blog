@@ -6,16 +6,19 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+    <script>
+        tinymce.init({
+          selector: '#mytextarea'
+        });
+    </script>
     <title>Title</title>
-    <ol>
-        <li th:each="post : ${posts}">
-            <h2 th:text="${post.title}"></h2>
-            <div th:utext="${post.content}"></div>
-        </li>
-    </ol>
 </head>
 <body>
-<h1>Home</h1>
-
+<h1>TinyMCE Quick Start Guide</h1>
+<form method="post" th:action="@{/posts/create}">
+    <textarea id="mytextarea" name="content">Hello, World!</textarea>
+    <button type="submit" class="btn btn-primary">Save</button>
+</form>
 </body>
 </html>

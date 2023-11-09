@@ -2,6 +2,8 @@ package dev.sapia.blog.model;
 
 import jakarta.persistence.*;
 
+import java.time.LocalDate;
+
 @Entity
 @Table(name = "posts")
 public class Post {
@@ -12,6 +14,7 @@ public class Post {
     @Lob
     @Column(columnDefinition = "LONGTEXT")
     private String content;
+    private LocalDate date;
     @ManyToOne
     private User author;
     @ManyToOne
@@ -41,6 +44,14 @@ public class Post {
         this.content = content;
     }
 
+    public LocalDate getDate() {
+        return date;
+    }
+
+    public void setDate(LocalDate date) {
+        this.date = date;
+    }
+
     public User getAuthor() {
         return author;
     }
@@ -56,4 +67,5 @@ public class Post {
     public void setCategory(Category category) {
         this.category = category;
     }
+
 }

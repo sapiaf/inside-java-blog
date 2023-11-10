@@ -1,4 +1,4 @@
-package dev.sapia.blog.controller;
+package dev.sapia.blog.controller.user;
 
 import dev.sapia.blog.model.Post;
 import dev.sapia.blog.repository.PostRepository;

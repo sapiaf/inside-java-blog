@@ -36,12 +36,7 @@ public class User {
 
     @OneToMany(mappedBy = "author")
     private List<Post> posts;
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(
-            name = "user_roles",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "role_id")
-    )
+    @ManyToMany(fetch = FetchType.EAGER)
     private Set<Role> roles;
 
     public Integer getId() {
@@ -106,5 +101,9 @@ public class User {
 
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
+    }
+
+    public String getFullName() {
+        return firstName + " " + lastName;
     }
 }

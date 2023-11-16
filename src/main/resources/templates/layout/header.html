@@ -1,10 +1,10 @@
-<header th:fragment="head" xmlns:th="http://www.w3.org/1999/xhtml" class="masthead">
+<header th:fragment="head(title, subheading)" xmlns:th="http://www.w3.org/1999/xhtml" class="masthead">
     <div class="container position-relative px-4 px-lg-5">
         <div class="row gx-4 gx-lg-5 justify-content-center">
             <div class="col-md-10 col-lg-8 col-xl-7">
                 <div class="site-heading">
-                    <h1>Clean Blog</h1>
-                    <span class="subheading">A Blog Theme by Start Bootstrap</span>
+                    <h1 th:text="${title}">Clean Blog</h1>
+                    <span class="subheading" th:text="${subheading}"></span>
                 </div>
             </div>
         </div>

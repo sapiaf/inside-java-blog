@@ -3,6 +3,8 @@ package dev.sapia.blog.model;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Locale;
 
 @Entity
 @Table(name = "posts")
@@ -68,4 +70,8 @@ public class Post {
         this.category = category;
     }
 
+    public String getFormattedDate() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMMM d, yyyy", Locale.ENGLISH);
+        return this.date.format(formatter);
+    }
 }

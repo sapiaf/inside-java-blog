@@ -24,4 +24,12 @@ public class IndexController {
         model.addAttribute("posts", posts);
         return "index";
     }
+    @GetMapping("/about")
+    public String about() {
+        return "user/about";
+    }
+    @GetMapping("/contact")
+    public String contact() {
+        return "user/contact";
+    }
 }

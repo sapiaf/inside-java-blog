@@ -10,10 +10,10 @@
     <div class="container px-4 px-lg-5">
         <div class="row gx-4 gx-lg-5 justify-content-center">
             <div class="col-md-10 col-lg-8 col-xl-7">
-                <div th:each="post : ${posts}" class="card">
+                <div th:each="category : ${categories}" class="card">
                     <div class="card-body">
-                        <h5 th:text="${post.title}" class="card-title">Special title treatment</h5>
-                        <a th:href="@{/posts/{blogId}(blogId=${post.id})}" class="btn btn-primary stretched-link">Go somewhere</a>
+                        <h5 th:text="${category.name}" class="card-title">Special title treatment</h5>
+                        <a th:href="@{/categories/{categoryId}(categoryId=${category.id})}" class="btn btn-primary stretched-link">Go somewhere</a>
                     </div>
                 </div>
             </div>

@@ -21,6 +21,8 @@ public class AdminController {
 
     @GetMapping
     public String index(Model model) {
+        List<Post> posts = postRepository.findAll();
+        model.addAttribute("posts", posts);
         return "admin/admin";
     }
 

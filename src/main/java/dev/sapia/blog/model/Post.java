@@ -13,6 +13,8 @@ public class Post {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String title;
+    private String subheading;
+    private String backgroundImg;
     @Lob
     @Column(columnDefinition = "LONGTEXT")
     private String content;

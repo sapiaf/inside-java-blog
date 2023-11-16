@@ -32,7 +32,9 @@ public class CategoryController {
     @GetMapping("/{categoryId}")
     public String show(@PathVariable("categoryId") Integer id, Model model) {
         List<Post> postByCategory = postRepository.findByCategory_Id(id);
+        Optional<Category> category = categoryRepository.findById(id);
 
+        model.addAttribute("category", category.get().getName());
         model.addAttribute("posts", postByCategory);
 
         return "user/catalog";

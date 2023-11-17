@@ -36,60 +36,9 @@ public class AdminController {
         List<Post> posts = postRepository.findAll();
         model.addAttribute("posts", posts);
         return "admin/admin";
-    }
-
-    @GetMapping("/post/create")
-    public String create(Model model) {
-        List<Category> categories = categoryRepository.findAll();
-        model.addAttribute("categories", categories);
-        return "admin/post/create";
-    }
-    @PostMapping("/post/create")
-    public String doCreate(@Valid @ModelAttribute("post") Post post, BindingResult bindingResult) {
-        if (bindingResult.hasErrors()) {
-            return "admin/post/create";
-        }
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String loggedInUserEmail = authentication.getName();
-        Optional<User> loggedInUserOptional = userRepository.findByEmail(loggedInUserEmail);
-        if (loggedInUserOptional.isPresent()) {
-            User loggedInUser = loggedInUserOptional.get();
-            post.setAuthor(loggedInUser);
-            post.setDate(LocalDate.now());
-            postRepository.save(post);
-            return "redirect:/admin";
-        } else {
-            return "redirect:/login";
-        }
-    }
-
-    @GetMapping("/post/update/{id}")
-    public String edit(@PathVariable Integer id, Model model) {
-        Optional<Post> post = postRepository.findById(id);
-        if (post.isPresent()) {
-            model.addAttribute("post", post.get());
-            model.addAttribute("categories", categoryRepository.findAll());
-            return "admin/post/edit";
-        } else {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "post with id " + id + " not found");
-        }
-    }
-
-    @PostMapping("/post/update/{id}")
-    public String doEdit(@PathVariable Integer id, @Valid @ModelAttribute("post") Post post,
-                         BindingResult bindingResult) {
-        if (bindingResult.hasErrors()) {
-            return "admin/post/edit";
-        }
-        post.setDate(LocalDate.now());
-        postRepository.save(post);
-        return "redirect:/admin";
-    }
 
 
-    @PostMapping("/post/delete/{id}")
-    public String deleteById(@PathVariable Integer id) {
-        postRepository.deleteById(id);
-        return "redirect:/admin";
+
     }
+
 }

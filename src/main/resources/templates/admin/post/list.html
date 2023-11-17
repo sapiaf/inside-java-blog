@@ -8,17 +8,17 @@
     <div id="layoutSidenav_content">
         <main>
             <div class="container-fluid px-4">
-                <h1 class="mt-4">Dashboard</h1>
+                <h1 class="mt-4">All Posts</h1>
                 <div class="d-flex justify-content-between align-items-center">
                     <ol class="breadcrumb mb-4">
-                        <li class="breadcrumb-item active">Dashboard</li>
+                        <li class="breadcrumb-item active">All Posts</li>
                     </ol>
-                    <a href="/admin/post/create" class="btn btn-primary mb-4">Aggiungi nuovo</a>
+                    <a href="/admin/posts/create" class="btn btn-primary mb-4">Aggiungi nuovo</a>
                 </div>
                 <div class="card mb-4">
                     <div class="card-header">
                         <i class="fas fa-table me-1"></i>
-                        Last Posts
+                        Posts
                     </div>
                     <div class="card-body">
                         <table class="table table-striped" id="datatablesSimple">
@@ -29,6 +29,7 @@
                                 <th>Author</th>
                                 <th>Category</th>
                                 <th>Date</th>
+                                <th></th>
                             </tr>
                             </thead>
                             <tbody>
@@ -38,6 +39,19 @@
                                 <td th:text="${post.author.fullName}">Edinburgh</td>
                                 <td th:text="${post.category.name}">61</td>
                                 <td th:text="${post.date}">2011/04/25</td>
+                                <td class="container d-flex justify-content-end">
+                                    <a th:href="@{/posts/{id}(id=${post.id})}" class="btn btn-primary m-1">
+                                        <i class="fa-solid fa-circle-info"></i>
+                                    </a>
+                                    <a th:href="@{/admin/posts/update/{id}(id=${post.id})}" class="btn btn-warning m-1">
+                                        <i class="fa-solid fa-pencil"></i>
+                                    </a>
+                                    <form th:action="@{/admin/posts/delete/{id}(id=${post.id})}" method="post">
+                                        <button type="submit" class="btn btn-danger m-1">
+                                            <i class="fa-solid fa-trash-can"></i>
+                                        </button>
+                                    </form>
+                                </td>
                             </tr>
                             </tbody>
                         </table>

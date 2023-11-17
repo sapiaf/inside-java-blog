@@ -23,7 +23,8 @@ public class DatabaseUserDetails implements UserDetails {
         this.username = user.getEmail();
         this.password = user.getPassword();
         this.authorities = new HashSet<>();
-        for (Role role : user.getRoles()) {
+        Role role = user.getRole();
+        if (role != null) {
             this.authorities.add(new SimpleGrantedAuthority(role.getName()));
         }
     }

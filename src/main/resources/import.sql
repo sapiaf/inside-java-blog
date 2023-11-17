@@ -1,10 +1,8 @@
-INSERT INTO users (id, first_name, last_name, registration_date, email, password) VALUES (1,'John', 'Doe', '2023-01-01', 'john@email.com', '{noop}john');
-INSERT INTO users (id, first_name, last_name, registration_date, email, password) VALUES (2,'Jane', 'Smith', '2023-05-05', 'jane@email.com', '{noop}jane');
 INSERT INTO roles(id, name) VALUES(1, 'ADMIN');
 INSERT INTO roles(id, name) VALUES(2, 'USER');
-INSERT INTO users_roles(user_id, roles_id) VALUES(1, 1);
-INSERT INTO users_roles(user_id, roles_id) VALUES(1, 2);
-INSERT INTO users_roles(user_id, roles_id) VALUES(2, 2);
+INSERT INTO users (id, first_name, last_name, registration_date, email, password, role_id) VALUES (1,'John', 'Doe', '2023-01-01', 'john@email.com', '{noop}john', 1);
+INSERT INTO users (id, first_name, last_name, registration_date, email, password, role_id) VALUES (2,'Jane', 'Smith', '2023-05-05', 'jane@email.com', '{noop}jane', 2);
+
 
 INSERT INTO categories (name) VALUES ('Travel');
 INSERT INTO categories (name) VALUES ('Health & Wellness');

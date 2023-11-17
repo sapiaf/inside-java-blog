@@ -21,8 +21,6 @@ public class User {
     @Size(max = 255)
     private String lastName;
 
-    @NotNull
-    @PastOrPresent
     private LocalDate registrationDate;
 
     @NotBlank
@@ -36,8 +34,8 @@ public class User {
 
     @OneToMany(mappedBy = "author")
     private List<Post> posts;
-    @ManyToMany(fetch = FetchType.EAGER)
-    private Set<Role> roles;
+    @ManyToOne
+    private Role role;
 
     public Integer getId() {
         return id;
@@ -94,13 +92,12 @@ public class User {
     public void setPosts(List<Post> posts) {
         this.posts = posts;
     }
-
-    public Set<Role> getRoles() {
-        return roles;
+    public Role getRole() {
+        return role;
     }
 
-    public void setRoles(Set<Role> roles) {
-        this.roles = roles;
+    public void setRole(Role role) {
+        this.role = role;
     }
 
     public String getFullName() {

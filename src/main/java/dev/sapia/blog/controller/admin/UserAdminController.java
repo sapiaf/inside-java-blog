@@ -6,10 +6,12 @@ import dev.sapia.blog.model.User;
 import dev.sapia.blog.repository.PostRepository;
 import dev.sapia.blog.repository.RoleRepository;
 import dev.sapia.blog.repository.UserRepository;
+import dev.sapia.blog.security.DatabaseUserDetails;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -62,6 +64,18 @@ public class UserAdminController {
         user.setRegistrationDate(LocalDate.now());
         userRepository.save(user);
         return "redirect:/admin/users";
+    }
+
+    @GetMapping("/profile")
+    public String profile(Model model, Authentication authentication) {
+        DatabaseUserDetails loggedUserDetails = (DatabaseUserDetails) authentication.getPrincipal();
+        Integer userId = loggedUserDetails.getId();
+        User loggedUser = userRepository.findById(userId).get();
+        List<Role> roles = roleRepository.findAll();
+
+        model.addAttribute("roles", roles);
+        model.addAttribute("user", loggedUser);
+        return "admin/user/profile";
     }
 
     @GetMapping("/profile/{id}")

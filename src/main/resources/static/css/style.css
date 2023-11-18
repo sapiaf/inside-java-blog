@@ -12,14 +12,39 @@ h6, .h6, h5, .h5, h4, .h4, h3, .h3, h2, .h2, h1, .h1 {
   font-weight: 800;
   line-height: 1.2;
 }
+.fa-xl {
+    font-size: 1.2em;
+}
+small, .small {
+    font-size: 1.1rem;
+}
+.post-preview .post-meta {
+    font-size: 1.125rem;
+    font-style: italic;
+    margin-top: 0;
+    color: #6c757d;
+}
+.post-preview a, .post-preview a {
+    color: #212529;
+}
+
+.post-preview > a:focus, .post-preview > a:hover {
+    text-decoration: none;
+    color: #0085A1;
+}
+
+.post-link {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
 
 /******** USER AREA **********/
-
-
 /* Nav */
 #mainNav {
-    color: #fff;
-    background-color: transparent;
+    color: var(--bs-dropdown-link-color);
+    background-color: #fff;
     position: absolute;
     top: 0;
     left: 0;
@@ -28,27 +53,31 @@ h6, .h6, h5, .h5, h4, .h4, h3, .h3, h2, .h2, h1, .h1 {
     font-family: "Open Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
 
-#mainNav .navbar-brand {
+#mainNav .navbar-brand, #mainNav .nav-link {
     font-weight: 800;
+    color: #212529;
 }
 /* Header */
 header.masthead {
-    /* position: relative; */
     margin-bottom: 3rem;
-    background-image: url(../images/home-bg.jpg);
-    /*padding-top: calc(8rem + 57px);
+    padding-top: calc(8rem + 57px);
     padding-bottom: 8rem;
-    background: no-repeat center center;
-    background-color: #6c757d;
+    position: relative;
+    text-align: center;
+    color: white;
+    background-image: url(https://appmaster.io/api/_files/hRaLG2N4DVjRZJQzCpN2zJ/download/);
     background-size: cover;
-    background-attachment: scroll;*/
 }
 
-@media (min-width: 992px) {
-    header.masthead {
-        padding-top: 12.5rem;
-        padding-bottom: 12.5rem;
-    }
+header.masthead::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(rgb(0 0 0 / 54%), rgb(0 0 0 / 47%)), url(https://appmaster.io/api/_files/hRaLG2N4DVjRZJQzCpN2zJ/download/);
+    background-size: cover;
 }
 /* Footer */
 .fa-stack {
@@ -67,13 +96,28 @@ footer {
 }
 
 
+
 /******** ADMIN AREA **********/
 body {
   background-color: #fbfbfb;
 }
 @media (min-width: 991.98px) {
-  main {
-    padding-left: 240px;
+  header.masthead {
+      padding-top: 12.5rem;
+      padding-bottom: 12.5rem;
+  }
+  .site-heading h1 {
+    font-size: 5rem;
+  }
+  subheading {
+    font-size: 2rem;
+  }
+  #mainNav {
+      color: #fff;
+      background-color: transparent;
+  }
+  #mainNav .navbar-brand, #mainNav .nav-link {
+      color: #fff;
   }
 }
 

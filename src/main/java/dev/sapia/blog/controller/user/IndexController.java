@@ -32,4 +32,5 @@ public class IndexController {
     public String contact() {
         return "user/contact";
     }
+
 }

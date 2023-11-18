@@ -31,20 +31,15 @@ public class SecurityConfiguration {
         return authenticationProvider;
     }
 
-//    @Bean
-//    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-//        http.authorizeHttpRequests()
-//                .requestMatchers("/books", "/books/show/**").hasAnyAuthority("ADMIN", "USER")
-//                .requestMatchers("/books/create", "/books/edit/**", "/books/delete/**")
-//                .hasAuthority("ADMIN")
-//                .requestMatchers("/borrowings/**").hasAuthority("ADMIN")
-//                .requestMatchers("/users", "/users/**").hasAuthority("ADMIN")
-//                .requestMatchers("/categories", "/categories/**").hasAuthority("ADMIN")
-//                .requestMatchers("/**").permitAll()
-//                .and().formLogin()
-//                .and().logout()
-//                .and().csrf().disable();
-//        return http.build();
-//    }
+    @Bean
+    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+        http.authorizeHttpRequests()
+                .requestMatchers("/admin/**").hasAnyAuthority("ADMIN", "USER")
+                .requestMatchers("/**").permitAll()
+                .and().formLogin()
+                .and().logout()
+                .and().csrf().disable();
+        return http.build();
+    }
 
 }

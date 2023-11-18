@@ -4,23 +4,27 @@ INSERT INTO users (id, first_name, last_name, registration_date, email, password
 INSERT INTO users (id, first_name, last_name, registration_date, email, password, role_id) VALUES (2,'Jane', 'Smith', '2023-05-05', 'jane@email.com', '{noop}jane', 2);
 
 
-INSERT INTO categories (name) VALUES ('Travel');
-INSERT INTO categories (name) VALUES ('Health & Wellness');
-INSERT INTO categories (name) VALUES ('Food & Recipes');
-INSERT INTO categories (name) VALUES ('Technology & Gadgets');
-INSERT INTO categories (name) VALUES ('Fashion & Style');
-INSERT INTO categories (name) VALUES ('Personal Development');
-INSERT INTO categories (name) VALUES ('Reviews');
-INSERT INTO categories (name) VALUES ('Parenting & Family');
-INSERT INTO categories (name) VALUES ('Home Decor & DIY');
-INSERT INTO categories (name) VALUES ('Career');
+INSERT INTO categories (name) VALUES ('Java');
+INSERT INTO categories (name) VALUES ('Oracle');
+INSERT INTO categories (name) VALUES ('JDK');
+INSERT INTO categories (name) VALUES ('Amber');
+INSERT INTO categories (name) VALUES ('Babylon');
+INSERT INTO categories (name) VALUES ('Cloud');
+INSERT INTO categories (name) VALUES ('Performance');
+INSERT INTO categories (name) VALUES ('Networking');
 
 
 
-INSERT INTO posts (content, title, author_id, date, category_id) VALUES('<p>ciao</p>', 'Mino', 1, '2023-01-01', 1);
-INSERT INTO posts (content, title, author_id, date, category_id) VALUES('<p>sono</p>', 'Sono', 1, '2023-02-01', 2);
-INSERT INTO posts (content, title, author_id, date, category_id) VALUES('<p>premio</p>', 'Premio', 1, '2023-03-01', 3);
-INSERT INTO posts (content, title, author_id, date, category_id) VALUES('<p>quadro</p>', 'Quadro', 1, '2023-04-01', 4);
+INSERT INTO posts (content, title, author_id, date, category_id) VALUES('<p>ciao</p>', 'The Arrival of Java 21', 1, '2023-01-01', 1);
+INSERT INTO posts (content, title, author_id, date, category_id) VALUES('<p>sono</p>', 'JavaOne is Back!', 1, '2023-02-01', 2);
+INSERT INTO posts (content, title, author_id, date, category_id) VALUES('<p>premio</p>', 'JCON World 2023: A virtual conference for Java developers', 1, '2023-03-01', 3);
+INSERT INTO posts (content, title, author_id, date, category_id) VALUES('<p>quadro</p>', 'Go Native with Spring Boot 3 and GraalVM', 1, '2023-04-01', 4);
 INSERT INTO posts (content, title, author_id, date, category_id) VALUES('<p>Questo è il mio primo post sul mio nuovo blog. Sono entusiasta di condividere con voi le mie idee e le mie esperienze. Spero che troverete i miei articoli interessanti e informativi.</p><p>Ecco alcune delle cose di cui parlerò nel mio blog:</p><ul><li>Web development</li><li>Tecnologie emergenti</li><li>Consigli su carriera</li></ul><p>Non vedo l\'ora di iniziare questa avventura con voi. Restate sintonizzati per ulteriori aggiornamenti!</p>', 'Benvenuto nel mio blog', 1, '2023-05-01', 5);
+
+INSERT INTO comments (content, date_time, user_id, post_id) VALUES ('Commento 1 per Mino', NOW(), 2, 1);
+INSERT INTO comments (content, date_time, user_id, post_id) VALUES ('Commento 2 per Mino', NOW(), 2, 1);
+INSERT INTO comments (content, date_time, user_id, post_id) VALUES ('Commento 3 per Mino', NOW(), 1, 1);
+INSERT INTO comments (content, date_time, user_id, post_id) VALUES ('Commento 4 per Sono', NOW(), 1, 2);
+INSERT INTO comments (content, date_time, user_id, post_id) VALUES ('Commento 5 per Sono', NOW(), 2, 2);
 
 

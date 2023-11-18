@@ -37,6 +37,17 @@ public class User {
     @ManyToOne
     private Role role;
 
+    @OneToMany(mappedBy = "user")
+    private List<Comment> comments;
+
+    public List<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
+    }
+
     public Integer getId() {
         return id;
     }

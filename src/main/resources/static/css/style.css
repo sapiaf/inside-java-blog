@@ -33,12 +33,15 @@ small, .small {
     color: #0085A1;
 }
 
-.post-link {
+/*.post-link {
     display: block;
     width: 100%;
     height: 100%;
-}
+}*/
 
+.author-link:hover {
+    color: #0085A1;
+}
 
 /******** USER AREA **********/
 /* Nav */
@@ -70,14 +73,13 @@ header.masthead {
 }
 
 header.masthead::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(rgb(0 0 0 / 54%), rgb(0 0 0 / 47%)), url(https://appmaster.io/api/_files/hRaLG2N4DVjRZJQzCpN2zJ/download/);
-    background-size: cover;
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(rgb(0 0 0 / 54%), rgb(0 0 0 / 47%));
 }
 /* Footer */
 .fa-stack {
@@ -95,7 +97,9 @@ footer {
     padding-bottom: 3rem;
 }
 
-
+a {
+    color: #0085A1;
+}
 
 /******** ADMIN AREA **********/
 body {
@@ -109,8 +113,11 @@ body {
   .site-heading h1 {
     font-size: 5rem;
   }
-  subheading {
+  .subheading {
     font-size: 2rem;
+  }
+  main p {
+    font-size: 1.2rem;
   }
   #mainNav {
       color: #fff;
@@ -119,6 +126,8 @@ body {
   #mainNav .navbar-brand, #mainNav .nav-link {
       color: #fff;
   }
+}
+#contactForm.btn {
 }
 
 /* Sidebar */

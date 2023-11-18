@@ -36,7 +36,6 @@
                                         <button class="btn btn-primary" type="submit" style="background-color: #0085A1; color: #fff">Submit</button>
                                     </form>
                                 </div>
-
                                 <div th:unless="${#authorization.expression('isAuthenticated()')}">
                                     <p>You must be <a href="/login">logged in</a> to post a comment.</p>
                                 </div>

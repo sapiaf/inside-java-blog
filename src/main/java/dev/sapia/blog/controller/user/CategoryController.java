@@ -35,6 +35,7 @@ public class CategoryController {
         Optional<Category> category = categoryRepository.findById(id);
 
         model.addAttribute("category", category.get().getName());
+        model.addAttribute("catalogTitle", category.get().getName());
         model.addAttribute("posts", postByCategory);
 
         return "user/catalog";

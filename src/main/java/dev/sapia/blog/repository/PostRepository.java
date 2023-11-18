@@ -9,5 +9,6 @@ import java.util.Optional;
 
 public interface PostRepository extends JpaRepository<Post, Integer> {
     List<Post> findByCategory_Id(Integer categoryId);
+    List<Post> findByAuthor_Id(Integer authorId);
     int countByAuthorId(Integer authorId);
 }

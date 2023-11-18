@@ -1,11 +1,11 @@
 <!doctype html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
-    <head th:replace="layout/head.html :: head('Clean Blog')"></head>
+    <head th:replace="layout/head.html :: head('Inside Java')"></head>
     <body>
         <!-- Navigation  -->
         <nav th:replace="layout/navbar.html :: navbar"></nav>
         <!-- Header   -->
-        <header th:replace="layout/header.html :: header('Spring Blog', 'A Blog Theme by Spring Blog')"></header>
+        <header th:replace="layout/header.html :: header('Inside Java', 'Latest Java News')"></header>
         <!-- Main  -->
         <main class="container px-4 mb-5 px-lg-5">
             <div class="row gx-4 gx-lg-5 justify-content-center">
@@ -15,9 +15,9 @@
                             <h2 th:text="${post.title}"></h2>
                             <div th:if="${post.subheading}" th:text="${post.subheading}"></div>
                             <div th:utext="${#strings.abbreviate(post.content, 65)}"></div>
-                            <p class="post-meta">Posted by <span th:text="${post.author.fullName}" style="color: #212529" href="#"></span> on  <span th:text="${post.getFormattedDate()}"></span></p>
-                            <hr class="my-4" th:unless="${postStat.last}">
                         </a>
+                            <p class="post-meta">Posted by <a class="author-link" th:href="@{/users/{userId}(userId=${post.author.id})}" th:text="${post.author.fullName}" style="color: #212529"></a> on  <span th:text="${post.getFormattedDate()}"></span></p>
+                            <hr class="my-4" th:unless="${postStat.last}">
                     </div>
                 </div>
             </div>

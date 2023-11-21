@@ -1,13 +1,7 @@
 package dev.sapia.blog.controller.admin;
 
-import dev.sapia.blog.model.Category;
-import dev.sapia.blog.model.Post;
-import dev.sapia.blog.model.Role;
-import dev.sapia.blog.model.User;
-import dev.sapia.blog.repository.CategoryRepository;
-import dev.sapia.blog.repository.PostRepository;
-import dev.sapia.blog.repository.RoleRepository;
-import dev.sapia.blog.repository.UserRepository;
+import dev.sapia.blog.model.*;
+import dev.sapia.blog.repository.*;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -33,12 +27,30 @@ public class AdminController {
     @Autowired
     private UserRepository userRepository;
     @Autowired
+    private MessageRepository messageRepository;
+    @Autowired
+    private CommentRepository commentRepository;
+    @Autowired
     private RoleRepository roleRepository;
 
     @GetMapping
     public String index(Model model) {
-        List<Post> posts = postRepository.findAll();
+        List<Post> posts = postRepository.findAllByOrderByDateDesc();
+        List<Comment> comments = commentRepository.findTop10ByOrderByDateTimeDesc();
+        List<Message> messages = messageRepository.findTop10ByOrderByDateDesc();
+
+        int totalViews = 0;
+        for (Post post : posts) {
+            Integer views = post.getViews();
+            if (views != null) {
+                totalViews += views;
+            }
+        }
+
+        model.addAttribute("totalViews", totalViews);
         model.addAttribute("posts", posts);
+        model.addAttribute("comments", comments);
+        model.addAttribute("messages", messages);
         return "admin/admin";
     }
 

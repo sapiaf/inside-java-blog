@@ -30,7 +30,7 @@ public class PostController {
     private UserRepository userRepository;
     @GetMapping
     public String index() {
-        return "index";
+        return "redirect:/";
     }
 
     @GetMapping("/{blogId}")

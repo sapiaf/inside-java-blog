@@ -14,7 +14,7 @@
                         <div class="card bg-primary text-white mb-4">
                             <div class="card-body">
                                 <h5 class="card-title">Views</h5>
-                                <h6 class="card-text fs-1">1000</h6>
+                                <h6 class="card-text fs-1" th:text="${totalViews}">1000</h6>
                             </div>
                             <div class="card-footer d-flex align-items-center justify-content-between">
                                 <a class="small text-white stretched-link" href="#">View Details</a>
@@ -26,7 +26,7 @@
                         <div class="card bg-warning text-white mb-4">
                             <div class="card-body">
                                 <h5 class="card-title">Posts</h5>
-                                <h6 class="card-text fs-1">999</h6>
+                                <h6 class="card-text fs-1" th:text="${posts.size()}">999</h6>
                             </div>
                             <div class="card-footer d-flex align-items-center justify-content-between">
                                 <a class="small text-white stretched-link" href="#">View Details</a>
@@ -38,7 +38,7 @@
                         <div class="card bg-success text-white mb-4">
                             <div class="card-body">
                                 <h5 class="card-title">Comments</h5>
-                                <h6 class="card-text fs-1">1000</h6>
+                                <h6 class="card-text fs-1" th:text="${comments.size()}">1000</h6>
                             </div>
                             <div class="card-footer d-flex align-items-center justify-content-between">
                                 <a class="small text-white stretched-link" href="#">View Details</a>
@@ -50,7 +50,7 @@
                         <div class="card bg-danger text-white mb-4">
                             <div class="card-body">
                                 <h5 class="card-title">Messages</h5>
-                                <h6 class="card-text fs-1">43</h6>
+                                <h6 class="card-text fs-1" th:text="${messages.size()}">43</h6>
                             </div>
                             <div class="card-footer d-flex align-items-center justify-content-between">
                                 <a class="small text-white stretched-link" href="#">View Details</a>
@@ -63,19 +63,17 @@
                     <div class="col-xl-6">
                         <div class="card mb-4">
                             <div class="card-header">
-                                <i class="fas fa-chart-area me-1"></i>
-                                Page Views x Month
+                                Monthly Page Views
                             </div>
-                            <div class="card-body"><canvas id="myAreaChart" width="100%" height="40"></canvas></div>
+                            <div class="card-body"><canvas id="myAreaChart"></canvas></div>
                         </div>
                     </div>
                     <div class="col-xl-6">
                         <div class="card mb-4">
                             <div class="card-header">
-                                <i class="fas fa-chart-bar me-1"></i>
-                                Post x Category
+                                Posts by Category
                             </div>
-                            <div class="card-body"><canvas id="myBarChart" width="100%" height="40"></canvas></div>
+                            <div class="card-body"><canvas id="myDoughnutChart"></canvas></div>
                         </div>
                     </div>
                 </div>
@@ -83,8 +81,7 @@
 
                 <div class="card mb-4">
                     <div class="card-header">
-                        <i class="fas fa-table me-1"></i>
-                        Last Posts
+                        Latest Posts
                     </div>
                     <div class="card-body">
                         <table class="table table-striped" id="datatablesSimple">
@@ -98,7 +95,7 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr th:each="post : ${posts}">
+                            <tr th:each="post, iterStat : ${posts}" th:if="${iterStat.index < 10}">
                                 <td th:text="${post.id}">Tiger Nixon</td>
                                 <td th:text="${post.title}">System Architect</td>
                                 <td th:text="${post.author.fullName}">Edinburgh</td>
@@ -110,32 +107,89 @@
                     </div>
                 </div>
 
-
-                <div class="row">
-                    <div class="col-xl-6">
-                        <div class="card mb-4">
-                            <div class="card-header">
-                                <i class="fas fa-chart-area me-1"></i>
-                                Latest Messages
-                            </div>
-                            <div class="card-body"><canvas id="myMessageChart" width="100%" height="40"></canvas></div>
-                        </div>
-                    </div>
-                    <div class="col-xl-6">
-                        <div class="card mb-4">
-                            <div class="card-header">
-                                <i class="fas fa-chart-bar me-1"></i>
-                                LatestComments
-                            </div>
-                            <div class="card-body"><canvas id="myCommentsChart" width="100%" height="40"></canvas></div>
-                        </div>
-                    </div>
-                </div>
-
             </div>
         </main>
         <footer th:replace="layout/admin-footer.html :: admin-footer"></footer>
     </div>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    fetch('/api/categories/postCountPerCategory')
+        .then(response => response.json())
+        .then(data => {
+            const categories = Object.keys(data);
+            const postCounts = Object.values(data);
+
+            const ctx = document.getElementById('myDoughnutChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: categories,
+                    datasets: [{
+                        label: 'Posts',
+                        data: postCounts,
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.5)',
+                            'rgba(54, 162, 235, 0.5)',
+                            'rgba(255, 206, 86, 0.5)',
+                            'rgba(75, 192, 192, 0.5)',
+                            'rgba(153, 102, 255, 0.5)',
+                            'rgba(255, 159, 64, 0.5)'
+                        ],
+                        borderColor: [
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            'rgba(75, 192, 192, 1)',
+                            'rgba(153, 102, 255, 1)',
+                            'rgba(255, 159, 64, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                }
+            });
+        })
+        .catch(error => {
+            console.error('Si è verificato un errore:', error);
+        });
+
+    fetch('/api/posts/viewsPerMonth')
+    .then(response => response.json())
+    .then(data => {
+        const months = Object.keys(data);
+        const views = Object.values(data);
+
+        const ctxArea = document.getElementById('myAreaChart').getContext('2d');
+        new Chart(ctxArea, {
+            type: 'line',
+            data: {
+                labels: months,
+                datasets: [{
+                    label: 'Views per Month',
+                    data: views,
+                    fill: false,
+                    borderColor: 'rgb(75, 192, 192)',
+                    tension: 0.1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    })
+    .catch(error => {
+        console.error('Si è verificato un errore:', error);
+    });
+
+
+
+</script>
+
 </body>
 </html>

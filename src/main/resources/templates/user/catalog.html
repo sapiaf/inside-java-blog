@@ -14,9 +14,9 @@
                     <h2 th:text="${post.title}"></h2>
                     <div th:if="${post.subheading}" th:text="${post.subheading}"></div>
                     <div th:utext="${#strings.abbreviate(post.content, 65)}"></div>
-                    <p class="post-meta">Posted by <span th:text="${post.author.fullName}" style="color: #212529" href="#"></span> on  <span th:text="${post.getFormattedDate()}"></span></p>
-                    <hr class="my-4" th:unless="${postStat.last}">
                 </a>
+                <p class="post-meta">Posted by <a class="author-link" th:href="@{/users/{userId}(userId=${post.author.id})}" th:text="${post.author.fullName}" style="color: #212529"></a> on  <span th:text="${post.getFormattedDate()}"></span></p>
+                <hr class="my-4" th:unless="${postStat.last}">
             </div>
         </div>
     </div>

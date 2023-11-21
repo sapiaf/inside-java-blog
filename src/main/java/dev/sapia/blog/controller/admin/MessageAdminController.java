@@ -28,10 +28,15 @@ public class MessageAdminController {
     private MessageRepository messageRepository;
 
     @GetMapping
-    public String index(Model model) {
-        List<Message> messages = messageRepository.findAll();
+    public String index(@RequestParam(value = "query", required = false) String searchKeyword, Model model) {
+        List<Message> messages;
+        if (searchKeyword != null && !searchKeyword.isEmpty()) {
+            messages = messageRepository.findByTextContainingIgnoreCase(searchKeyword);
+        } else {
+            messages = messageRepository.findAll();
+        }
         model.addAttribute("messages", messages);
-        return "/admin/message/list";
+        return "admin/message/list";
     }
     @GetMapping("/{messageId}")
     public String show(@PathVariable("messageId") Integer id, Model model) {

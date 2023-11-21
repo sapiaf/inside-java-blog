@@ -21,7 +21,7 @@ public class IndexController {
     private PostRepository postRepository;
     @GetMapping
     public String index(Model model) {
-        List<Post> posts = postRepository.findAll();
+        List<Post> posts = postRepository.findAllByOrderByDateDesc();
         model.addAttribute("posts", posts);
         return "index";
     }

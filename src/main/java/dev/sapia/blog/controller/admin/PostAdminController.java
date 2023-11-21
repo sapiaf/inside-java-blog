@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -32,11 +33,18 @@ public class PostAdminController {
     private UserRepository userRepository;
 
     @GetMapping
-    public String index(Model model) {
-        List<Post> posts = postRepository.findAll();
+    public String index(@RequestParam(value = "query", required = false) String searchKeyword, Model model) {
+        List<Post> posts;
+        if (searchKeyword != null && !searchKeyword.isEmpty()) {
+            posts = postRepository.findByTitleContainingIgnoreCase(searchKeyword);
+        } else {
+            posts = postRepository.findAll();
+        }
+
         model.addAttribute("posts", posts);
         return "admin/post/list";
     }
+
 
     @GetMapping("/create")
     public String create(Model model) {

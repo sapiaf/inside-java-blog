@@ -1,6 +1,7 @@
 package dev.sapia.blog.controller.admin;
 
 
+import dev.sapia.blog.model.Post;
 import dev.sapia.blog.model.Role;
 import dev.sapia.blog.model.User;
 import dev.sapia.blog.repository.PostRepository;
@@ -37,8 +38,15 @@ public class UserAdminController {
     private PasswordEncoder passwordEncoder;
 
     @GetMapping
-    public String index(Model model) {
-        List<User> users = userRepository.findAll();
+    public String index(@RequestParam(value = "query", required = false) String searchKeyword, Model model) {
+        List<User> users;
+        if (searchKeyword != null && !searchKeyword.isEmpty()) {
+            users = userRepository.findByFirstNameContainingIgnoreCaseOrLastNameContainingIgnoreCase(searchKeyword, searchKeyword);
+        } else {
+            users = userRepository.findAll();
+        }
+
+
         List<Integer> postCounts = new ArrayList<>();
         for (User user : users) {
             Integer userCount = postRepository.countByAuthorId(user.getId());
@@ -75,7 +83,9 @@ public class UserAdminController {
         Integer userId = loggedUserDetails.getId();
         User loggedUser = userRepository.findById(userId).get();
         List<Role> roles = roleRepository.findAll();
+        List<Post> posts = postRepository.findByAuthor_IdOrderByDateDesc(userId);
 
+        model.addAttribute("posts", posts);
         model.addAttribute("roles", roles);
         model.addAttribute("user", loggedUser);
         return "admin/user/detail";

@@ -15,10 +15,10 @@ INSERT INTO categories (name) VALUES ('Networking');
 
 
 
-INSERT INTO posts (content, title, author_id, date, category_id) VALUES('<p>ciao</p>', 'The Arrival of Java 21', 1, '2023-01-01', 1);
-INSERT INTO posts (content, title, author_id, date, category_id) VALUES('<p>sono</p>', 'JavaOne is Back!', 1, '2023-02-01', 2);
-INSERT INTO posts (content, title, author_id, date, category_id) VALUES('<p>premio</p>', 'JCON World 2023: A virtual conference for Java developers', 1, '2023-03-01', 3);
-INSERT INTO posts (content, title, author_id, date, category_id) VALUES('<p>quadro</p>', 'Go Native with Spring Boot 3 and GraalVM', 1, '2023-04-01', 4);
+INSERT INTO posts (content, title, author_id, date, category_id, views) VALUES('<p>ciao</p>', 'The Arrival of Java 21', 1, '2023-01-01', 1, 10);
+INSERT INTO posts (content, title, author_id, date, category_id, views) VALUES('<p>sono</p>', 'JavaOne is Back!', 1, '2023-02-01', 2, 23);
+INSERT INTO posts (content, title, author_id, date, category_id, views) VALUES('<p>premio</p>', 'JCON World 2023: A virtual conference for Java developers', 1, '2023-03-01', 3, 4);
+INSERT INTO posts (content, title, author_id, date, category_id, views) VALUES('<p>quadro</p>', 'Go Native with Spring Boot 3 and GraalVM', 1, '2023-04-01', 4, 5);
 INSERT INTO posts (content, title, author_id, date, category_id, subheading) VALUES('<p>Questo è il mio primo post sul mio nuovo blog. Sono entusiasta di condividere con voi le mie idee e le mie esperienze. Spero che troverete i miei articoli interessanti e informativi.</p><p>Ecco alcune delle cose di cui parlerò nel mio blog:</p><ul><li>Web development</li><li>Tecnologie emergenti</li><li>Consigli su carriera</li></ul><p>Non vedo l\'ora di iniziare questa avventura con voi. Restate sintonizzati per ulteriori aggiornamenti!</p>', 'Benvenuto nel mio blog', 1, '2023-05-01', 5, 'subheading');
 
 INSERT INTO comments (content, date_time, user_id, post_id) VALUES ('Commento 1 per Mino', NOW(), 2, 1);

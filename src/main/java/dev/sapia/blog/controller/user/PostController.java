@@ -39,6 +39,8 @@ public class PostController {
         List<Comment> comments = commentRepository.findByPost_Id(id);
         if (postOptional.isPresent()) {
             Post postFromDB = postOptional.get();
+            postFromDB.incrementViews();
+            postRepository.save(postFromDB);
             model.addAttribute("post", postFromDB);
             model.addAttribute("comments", comments);
             return "user/detail";

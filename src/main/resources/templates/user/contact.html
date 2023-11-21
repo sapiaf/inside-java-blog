@@ -15,26 +15,21 @@
                         <div class="container my-5">
                             <form id="contactForm" data-sb-form-api-token="API_TOKEN">
                                 <div class="row">
-                                    <div class="col-md-4">
+                                    <div class="col">
                                         <div class="form-floating mb-3">
                                             <input class="form-control" id="name" type="text" placeholder="Enter your name..." data-sb-validations="required" required>
                                             <label for="name">Name *</label>
                                             <div class="invalid-feedback" data-sb-feedback="name:required">Please enter your name.</div>
                                         </div>
                                     </div>
-                                    <div class="col-md-4">
+                                </div>
+                                <div class="row">
+                                    <div class="col">
                                         <div class="form-floating mb-3">
                                             <input class="form-control" id="email" type="email" placeholder="Enter your email..." data-sb-validations="required,email" required>
                                             <label for="email">Email address *</label>
                                             <div class="invalid-feedback" data-sb-feedback="email:required">Please enter your email.</div>
                                             <div class="invalid-feedback" data-sb-feedback="email:email">Please enter a valid email.</div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="form-floating mb-3">
-                                            <input class="form-control" id="phone" type="tel" placeholder="Enter your phone number..." data-sb-validations="required" required>
-                                            <label for="phone">Phone Number *</label>
-                                            <div class="invalid-feedback" data-sb-feedback="phone:required">Please enter your phone number.</div>
                                         </div>
                                     </div>
                                 </div>
@@ -57,8 +52,10 @@
                                                 <a href="https://startbootstrap.com/solution/contact-forms">https://startbootstrap.com/solution/contact-forms</a>
                                             </div>
                                         </div>
-                                        <div class="d-none" id="submitErrorMessage"><div class="text-center text-danger mb-3">Error sending message!</div></div>
-                                        <button class="btn btn-primary text-uppercase" id="submitButton" type="submit" style="background-color: #0085A1; color: #fff; padding: 10px 34px;">Send</button>
+                                        <div class="d-none" id="submitErrorMessage">
+                                            <div class="text-center text-danger mb-3">Error sending message!</div>
+                                        </div>
+                                        <button class="btn btn-primary text-uppercase w-100" id="submitButton" type="submit" style="background-color: #0085A1; color: #fff;">Send</button>
                                     </div>
                                 </div>
                             </form>

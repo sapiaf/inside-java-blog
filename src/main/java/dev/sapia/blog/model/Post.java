@@ -24,8 +24,17 @@ public class Post {
     private User author;
     @ManyToOne
     private Category category;
-    @OneToMany(mappedBy = "post")
+    @OneToMany(mappedBy = "post", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Comment> comments;
+    private Integer views;
+
+    public Integer getViews() {
+        return views;
+    }
+
+    public void setViews(Integer views) {
+        this.views = views;
+    }
 
     public String getSubheading() {
         return subheading;
@@ -102,5 +111,11 @@ public class Post {
     public String getFormattedDate() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMMM d, yyyy", Locale.ENGLISH);
         return this.date.format(formatter);
+    }
+    public void incrementViews() {
+        if (this.views == null) {
+            this.views = 0;
+        }
+        this.views++;
     }
 }

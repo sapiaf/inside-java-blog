@@ -13,52 +13,38 @@
                     <div class="col-md-10 col-lg-8 col-xl-7">
                         <p>Want to get in touch? Fill out the form below to send me a message and I will get back to you as soon as possible!</p>
                         <div class="container my-5">
-                            <form id="contactForm" data-sb-form-api-token="API_TOKEN">
+                            <form method="post" th:action="@{/contact/create}" th:object="${message}" id="contactForm">
                                 <div class="row">
                                     <div class="col">
                                         <div class="form-floating mb-3">
-                                            <input class="form-control" id="name" type="text" placeholder="Enter your name..." data-sb-validations="required" required>
-                                            <label for="name">Name *</label>
-                                            <div class="invalid-feedback" data-sb-feedback="name:required">Please enter your name.</div>
+                                            <input class="form-control" th:field="*{name}" id="name"  type="text" placeholder="Enter your name..." required>
+                                            <label for="name">Name</label>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col">
                                         <div class="form-floating mb-3">
-                                            <input class="form-control" id="email" type="email" placeholder="Enter your email..." data-sb-validations="required,email" required>
-                                            <label for="email">Email address *</label>
-                                            <div class="invalid-feedback" data-sb-feedback="email:required">Please enter your email.</div>
-                                            <div class="invalid-feedback" data-sb-feedback="email:email">Please enter a valid email.</div>
+                                            <input class="form-control" th:field="*{email}" id="email"  type="email" placeholder="Enter your email..." required>
+                                            <label for="email">Email</label>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col">
                                         <div class="form-floating mb-3">
-                                            <textarea class="form-control" id="message" placeholder="Enter your message here..." style="height: 12rem" data-sb-validations="required" required></textarea>
-                                            <label for="message">Message *</label>
-                                            <div class="invalid-feedback" data-sb-feedback="message:required">Please enter your message.</div>
+                                            <textarea class="form-control" th:field="*{text}" id="text" placeholder="Enter your message here..." style="height: 12rem" place required></textarea>
+                                            <label for="text">Message</label>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col">
-                                        <div class="d-none" id="submitSuccessMessage">
-                                            <div class="text-center mb-3">
-                                                <div class="fw-bolder">Form submission successful!</div>
-                                                To activate this form, sign up at
-                                                <br>
-                                                <a href="https://startbootstrap.com/solution/contact-forms">https://startbootstrap.com/solution/contact-forms</a>
-                                            </div>
-                                        </div>
-                                        <div class="d-none" id="submitErrorMessage">
-                                            <div class="text-center text-danger mb-3">Error sending message!</div>
-                                        </div>
                                         <button class="btn btn-primary text-uppercase w-100" id="submitButton" type="submit" style="background-color: #0085A1; color: #fff;">Send</button>
                                     </div>
                                 </div>
                             </form>
+
                         </div>
                     </div>
                 </div>

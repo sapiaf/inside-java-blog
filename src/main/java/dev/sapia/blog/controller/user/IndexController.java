@@ -1,5 +1,6 @@
 package dev.sapia.blog.controller.user;
 
+import dev.sapia.blog.model.Message;
 import dev.sapia.blog.model.Post;
 import dev.sapia.blog.repository.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,10 +28,6 @@ public class IndexController {
     @GetMapping("/about")
     public String about() {
         return "user/about";
-    }
-    @GetMapping("/contact")
-    public String contact() {
-        return "user/contact";
     }
 
 }

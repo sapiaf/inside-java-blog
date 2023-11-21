@@ -39,13 +39,10 @@
                                 <td th:text="${comment.post.title}">61</td>
                                 <td th:text="${comment.dateTime}">2011/04/25</td>
                                 <td class="container d-flex justify-content-end">
-                                    <a th:href="@{/posts/{id}(id=${comment.id})}" class="btn btn-primary m-1">
+                                    <a th:href="@{/admin/comments/{commentId}(commentId=${comment.id})}" class="btn btn-primary m-1">
                                         <i class="fa-solid fa-circle-info"></i>
                                     </a>
-                                    <a th:href="@{/admin/posts/update/{id}(id=${comment.id})}" class="btn btn-warning m-1">
-                                        <i class="fa-solid fa-pencil"></i>
-                                    </a>
-                                    <form th:action="@{/admin/posts/delete/{id}(id=${comment.id})}" method="post">
+                                    <form th:action="@{/admin/comments/delete/{id}(id=${comment.id})}" method="post">
                                         <button type="submit" class="btn btn-danger m-1">
                                             <i class="fa-solid fa-trash-can"></i>
                                         </button>

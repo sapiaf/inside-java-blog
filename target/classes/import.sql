@@ -27,4 +27,11 @@ INSERT INTO comments (content, date_time, user_id, post_id) VALUES ('Commento 3 
 INSERT INTO comments (content, date_time, user_id, post_id) VALUES ('Commento 4 per Sono', NOW(), 1, 2);
 INSERT INTO comments (content, date_time, user_id, post_id) VALUES ('Commento 5 per Sono', NOW(), 2, 2);
 
+INSERT INTO messages (name, email, text, date) VALUES ('John Doe', 'john@example.com', 'Hello, this is a test message.', CURRENT_DATE);
+INSERT INTO messages (name, email, text, date) VALUES ('Alice Smith', 'alice@example.com', 'Testing message from Alice.', CURRENT_DATE);
+INSERT INTO messages (name, email, text, date) VALUES ('Bob Johnson', 'bob@example.com', 'This is another test message.', CURRENT_DATE);
+INSERT INTO messages (name, email, text, date) VALUES ('Emma Brown', 'emma@example.com', 'Test message content for Emma.', CURRENT_DATE);
+INSERT INTO messages (name, email, text, date) VALUES ('Michael Davis', 'michael@example.com', 'Just testing the message functionality.', CURRENT_DATE);
+
+
 

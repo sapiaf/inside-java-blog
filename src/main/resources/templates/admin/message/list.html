@@ -8,7 +8,7 @@
     <div id="layoutSidenav_content">
         <main>
             <div class="container-fluid px-4">
-                <h1 class="mt-4">Comments</h1>
+                <h1 class="mt-4">Messages</h1>
                 <form class="d-flex ms-auto bg-light-gray mt-3 mb-3" th:action="@{/admin/categories/search}" method="get">
                     <input class="form-control me-2" type="search" name="query" placeholder="Search..."
                            aria-label="Search">
@@ -23,29 +23,27 @@
                         <table class="table table-striped" id="datatablesSimple">
                             <thead>
                             <tr>
-                                <th>ID</th>
-                                <th>Author</th>
-                                <th>Comment</th>
-                                <th>Post</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Message</th>
                                 <th>Date</th>
                                 <th></th>
                             </tr>
                             </thead>
                             <tbody>
-                            <tr th:each="comment : ${comments}">
-                                <td th:text="${comment.id}">Tiger Nixon</td>
-                                <td th:text="${comment.user.fullName}">System Architect</td>
-                                <td th:text="${comment.content}">Edinburgh</td>
-                                <td th:text="${comment.post.title}">61</td>
-                                <td th:text="${comment.dateTime}">2011/04/25</td>
+                            <tr th:each="message : ${messages}">
+                                <td th:text="${message.name}"></td>
+                                <td th:text="${message.email}"></td>
+                                <td th:text="${message.text}"></td>
+                                <td th:text="${message.date}"></td>
                                 <td class="container d-flex justify-content-end">
-                                    <a th:href="@{/posts/{id}(id=${comment.id})}" class="btn btn-primary m-1">
+                                    <a th:href="@{/admin/messages/{messageId}(messageId=${message.id})}" class="btn btn-primary m-1">
                                         <i class="fa-solid fa-circle-info"></i>
                                     </a>
-                                    <a th:href="@{/admin/posts/update/{id}(id=${comment.id})}" class="btn btn-warning m-1">
-                                        <i class="fa-solid fa-pencil"></i>
+                                    <a th:href="'mailto:' + ${message.email}" class="btn btn-warning m-1">
+                                        <i class="fa-solid fa-reply"></i>
                                     </a>
-                                    <form th:action="@{/admin/posts/delete/{id}(id=${comment.id})}" method="post">
+                                    <form th:action="@{/admin/messages/delete/{id}(id=${message.id})}" method="post">
                                         <button type="submit" class="btn btn-danger m-1">
                                             <i class="fa-solid fa-trash-can"></i>
                                         </button>

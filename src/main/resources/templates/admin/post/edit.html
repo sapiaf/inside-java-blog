@@ -9,7 +9,7 @@
         <main>
             <div class="container-fluid px-4">
                 <h1 class="mt-4">Update Post</h1>
-                <form method="post" th:action="@{/admin/post/update/{id}(id=${post.id})}" th:object="${post}">
+                <form method="post" th:action="@{/admin/posts/update/{id}(id=${post.id})}" th:object="${post}">
                     <input type="hidden"  th:field="*{author}" />
                     <div class="form-group">
                         <label for="title">Title *</label>

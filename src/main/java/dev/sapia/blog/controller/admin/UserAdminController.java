@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 
 import org.springframework.security.core.Authentication;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -32,6 +33,8 @@ public class UserAdminController {
     private PostRepository postRepository;
     @Autowired
     private RoleRepository roleRepository;
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @GetMapping
     public String index(Model model) {
@@ -75,7 +78,7 @@ public class UserAdminController {
 
         model.addAttribute("roles", roles);
         model.addAttribute("user", loggedUser);
-        return "admin/user/profile";
+        return "admin/user/detail";
     }
 
     @GetMapping("/profile/{id}")
@@ -92,14 +95,25 @@ public class UserAdminController {
     }
 
     @PostMapping("/profile/{id}")
-    public String doEdit(@PathVariable Integer id, @Valid @ModelAttribute("user") User user,
-                         BindingResult bindingResult) {
-        if (bindingResult.hasErrors()) {
-            return "admin/user/profile";
+    public String doEdit(@PathVariable Integer id, @Valid @ModelAttribute("user") User user, BindingResult bindingResult) {
+        Optional<User> existingUserOptional = userRepository.findById(id);
+
+        if (existingUserOptional.isPresent()) {
+            User existingUser = existingUserOptional.get();
+
+            if (user.getPassword() == null || user.getPassword().isEmpty()) {
+                user.setPassword(existingUser.getPassword());
+            } else {
+                String encodedPassword = passwordEncoder.encode(user.getPassword());
+                user.setPassword(encodedPassword);
+            }
+
+            user.setRegistrationDate(existingUser.getRegistrationDate());
+            userRepository.save(user);
+            return "redirect:/admin/users";
+        } else {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "user with id " + id + " not found");
         }
-        user.setRegistrationDate(LocalDate.now());
-        userRepository.save(user);
-        return "redirect:/admin/users";
     }
 
     @PostMapping("/delete/{id}")

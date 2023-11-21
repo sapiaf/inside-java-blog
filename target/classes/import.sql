@@ -1,7 +1,7 @@
 INSERT INTO roles(id, name) VALUES(1, 'ADMIN');
 INSERT INTO roles(id, name) VALUES(2, 'USER');
-INSERT INTO users (id, first_name, last_name, registration_date, email, password, role_id) VALUES (1,'John', 'Doe', '2023-01-01', 'john@email.com', '{noop}john', 1);
-INSERT INTO users (id, first_name, last_name, registration_date, email, password, role_id) VALUES (2,'Jane', 'Smith', '2023-05-05', 'jane@email.com', '{noop}jane', 2);
+INSERT INTO users (id, first_name, last_name, registration_date, email, password, role_id, profile_pic, bio) VALUES (1,'John', 'Doe', '2023-01-01', 'john@email.com', '{noop}john', 1, 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png', 'hi');
+INSERT INTO users (id, first_name, last_name, registration_date, email, password, role_id, profile_pic, bio) VALUES (2,'Jane', 'Smith', '2023-05-05', 'jane@email.com', '{noop}jane', 2, 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png', 'hi');
 
 
 INSERT INTO categories (name) VALUES ('Java');

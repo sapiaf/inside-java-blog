@@ -15,7 +15,7 @@
                                aria-label="Search">
                         <button class="btn btn-primary" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
                     </form>
-                    <a href="/admin/posts/create" class="btn btn-primary">Aggiungi nuovo</a>
+                    <a th:href="@{/admin/users/create}" class="btn btn-primary">Aggiungi nuovo</a>
                 </div>
                 <div class="card mb-4">
                     <div class="card-header">
@@ -42,7 +42,7 @@
                                 <td th:text="${user.role.name}">Role</td>
                                 <td th:text="${postCounts[userStat.index]}">Articles</td>
                                 <td class="container d-flex justify-content-end">
-                                    <a href="#" class="btn btn-warning m-1">
+                                    <a th:href="@{/admin/users/profile/{id}(id=${user.id})}" class="btn btn-warning m-1">
                                         <i class="fa-solid fa-pencil"></i>
                                     </a>
 <!--                                    <form th:action="@{/admin/users/delete/{id}(id=${user.id})}" method="post">-->

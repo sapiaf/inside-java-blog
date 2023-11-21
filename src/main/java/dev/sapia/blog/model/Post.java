@@ -24,7 +24,7 @@ public class Post {
     private User author;
     @ManyToOne
     private Category category;
-    @OneToMany(mappedBy = "post", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "post", cascade = CascadeType.ALL)
     private List<Comment> comments;
     private Integer views;
 

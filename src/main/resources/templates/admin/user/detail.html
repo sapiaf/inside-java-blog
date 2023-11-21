@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="layout/admin-head.html :: admin-head('User Profile')"></head>
+<body class="sb-nav-fixed">
+<nav th:replace="layout/admin-navbar.html :: admin-navbar"></nav>
+<div id="layoutSidenav">
+    <div th:replace="layout/admin-aside.html :: admin-aside"></div>
+    <div id="layoutSidenav_content">
+        <main>
+            <div class="container-fluid px-4">
+                <h1 class="mt-4">User Profile</h1>
+                <div class="row">
+                    <div class="col-xl-3">
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                Profile Picture
+                            </div>
+                            <div class="card-body">
+                                <img th:src="${user.profilePic}" class="img-fluid" alt="Profile Picture">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-9">
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                Account Details
+                            </div>
+                            <div class="card-body">
+
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <h6 class="mb-0">Full Name:</h6>
+                                    </div>
+                                    <div class="col-sm-9 text-secondary">
+                                        <span th:text="${user.fullName}"></span>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <h6 class="mb-0">Email:</h6>
+                                    </div>
+                                    <div class="col-sm-9 text-secondary">
+                                        <span th:text="${user.email}"></span>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <h6 class="mb-0">Bio:</h6>
+                                    </div>
+                                    <div class="col-sm-9 text-secondary">
+                                        <span th:text="${user.bio}"></span>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <h6 class="mb-0">Registration Date:</h6>
+                                    </div>
+                                    <div class="col-sm-9 text-secondary">
+                                        <span th:text="${user.registrationDate}"></span>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <h6 class="mb-0">Role:</h6>
+                                    </div>
+                                    <div class="col-sm-9 text-secondary">
+                                        <span th:text="${user.role.name}"></span>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <h6 class="mb-0">Total Posts:</h6>
+                                    </div>
+                                    <div class="col-sm-9 text-secondary">
+                                        <span th:text="${user.posts.size()}"></span>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <h6 class="mb-0">Total Comments:</h6>
+                                    </div>
+                                    <div class="col-sm-9 text-secondary">
+                                        <span th:text="${user.comments.size()}"></span>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <a th:href="@{/admin/users/profile/{id}(id=${user.id})}" class="btn btn-primary">Edit profile</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer th:replace="layout/admin-footer.html :: admin-footer"></footer>
+    </div>
+</div>
+</body>
+</html>

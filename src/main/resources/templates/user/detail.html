@@ -5,7 +5,7 @@
         <!-- Navigation  -->
         <nav th:replace="layout/navbar.html :: navbar"></nav>
         <!-- Header   -->
-        <header th:replace="layout/header.html :: header(${post.title}, '')"></header>
+        <header th:replace="layout/header.html :: header(${post.title}, ${subheading}, ${backgroundImg})"></header>
         <main>
             <article class="mb-4">
                 <div class="container px-4 px-lg-5">

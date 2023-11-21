@@ -39,6 +39,18 @@ public class User {
 
     @OneToMany(mappedBy = "user")
     private List<Comment> comments;
+    @Column(name = "profile_pic")
+    private String profilePic;
+
+    private String bio;
+
+    public String getBio() {
+        return bio;
+    }
+
+    public void setBio(String bio) {
+        this.bio = bio;
+    }
 
     public List<Comment> getComments() {
         return comments;
@@ -113,5 +125,13 @@ public class User {
 
     public String getFullName() {
         return firstName + " " + lastName;
+    }
+
+    public String getProfilePic() {
+        return profilePic;
+    }
+
+    public void setProfilePic(String profilePic) {
+        this.profilePic = profilePic;
     }
 }

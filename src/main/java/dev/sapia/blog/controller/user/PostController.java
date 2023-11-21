@@ -37,12 +37,22 @@ public class PostController {
     public String show(@PathVariable("blogId") Integer id, Model model) {
         Optional<Post> postOptional = postRepository.findById(id);
         List<Comment> comments = commentRepository.findByPost_Id(id);
+        String defaultBackgroundImg = "https://appmaster.io/api/_files/hRaLG2N4DVjRZJQzCpN2zJ/download/";
+
         if (postOptional.isPresent()) {
             Post postFromDB = postOptional.get();
             postFromDB.incrementViews();
             postRepository.save(postFromDB);
+
+            String backgroundImg = postFromDB.getBackgroundImg();
+            if (backgroundImg == null || backgroundImg.isEmpty()) {
+                backgroundImg = defaultBackgroundImg;
+            }
+
             model.addAttribute("post", postFromDB);
+            model.addAttribute("subheading", postFromDB.getSubheading());
             model.addAttribute("comments", comments);
+            model.addAttribute("backgroundImg", backgroundImg);
             return "user/detail";
         } else {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);

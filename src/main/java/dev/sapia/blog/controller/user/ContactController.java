@@ -33,8 +33,7 @@ public class ContactController {
         } else {
             message.setDate(LocalDateTime.now());
             messageRepository.save(message);
-            // Redirect alla pagina di conferma o a un'altra pagina
-            return "redirect:/contact"; // Ad esempio
+            return "redirect:/contact";
         }
     }
 }

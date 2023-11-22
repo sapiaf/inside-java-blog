@@ -40,6 +40,7 @@ public class CommentAdminController {
         model.addAttribute("comments", comments);
         return "admin/comment/list";
     }
+
     @GetMapping("/{commentId}")
     public String show(@PathVariable("commentId") Integer id, Model model) {
         Optional<Comment> commentOptional = commentRepository.findById(id);
